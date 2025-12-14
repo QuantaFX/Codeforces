@@ -2,20 +2,23 @@ def sol():
     n = int(input())
     b = list(map(int, input().split()))
     a = [0] * n
-    prev_left = 0
-    prev_right = float('inf')
+
+    p_l = 0
+    p_r = float('inf')
 
     for i in range(n // 2):
-        target_sum = b[i]
-        left_val = prev_left
-        right_val = target_sum - left_val
-        if right_val > prev_right:
-            diff = right_val - prev_right
-            left_val += diff
-            right_val -= diff
-        a[i] = left_val
-        a[n - 1 - i] = right_val
-        prev_left = left_val
-        prev_right = right_val
+
+        sum = b[i]
+        l = p_l
+        r = sum - l
+        if  r > p_r:
+            diff =  r - p_r
+            l += diff
+            r -= diff
+        a[i] = l
+        a[n - 1 - i] =  r
+        p_l = l
+        p_r = r
+
     print(*a)
 sol()
