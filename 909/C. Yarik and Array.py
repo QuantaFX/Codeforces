@@ -2,19 +2,19 @@ def sol():
     n = int(input())
     s = list(map(int, input().split()))
 
-    max = min(s)
-    for i in range(n):
-        m = s[i]
-        if m > max:
-            max = m
-        for j in range(i+1, n):
-            if s[j] % 2 != s[j-1] % 2:
-                m += s[j]
-                if m > max:
-                    max = m
+    maxi = s[0]
+    maxj = s[0]
+    for i in range(1, n):
+        if s[i] % 2 != s[i-1] % 2:
+            if maxi < 0:
+                maxi = s[i]
             else:
-                break
-    print(max)
+                maxi += s[i]
+        else:
+            maxi = s[i]
+        if maxi > maxj:
+            maxj = maxi
+    print(maxj)
 
 tc = int(input())
 while tc:
