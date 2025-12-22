@@ -1,21 +1,32 @@
-from collections import Counter
+import sys
+input = sys.stdin.read
 
 def sol():
-    n = int(input())
-    s = list(map(int, input().split()))
+    data = input().split()
+    ptr = 0
+    t = int(data[ptr])
+    ptr += 1
+    results = []
 
-    freq = Counter(s)
+    for _ in range(t):
+        n = int(data[ptr])
+        ptr += 1
 
-    ans = 0
-    for count in freq.values():
-        if count > 1:
-            ans += count * (count - 1) // 2
+        counts = {}
+        for i in range(n):
+            val = int(data[ptr])
+            ptr += 1
+            counts[val] = counts.get(val, 0) + 1
 
-    if 1 in freq and 2 in freq:
-        ans += freq[1] * freq[2]
-    print(int(ans))
+        ans = 0
+        for val in counts:
+            c = counts[val]
+            ans += (c * (c - 1)) // 2
 
-tc = int(input())
-while tc:
-    tc -= 1
-    sol()
+        if 1 in counts and 2 in counts:
+            ans += counts[1] * counts[2]
+
+        results.append(str(ans))
+    sys.stdout.write("\n".join(results) + "\n")
+
+sol()
