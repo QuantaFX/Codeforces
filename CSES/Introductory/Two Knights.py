@@ -1,0 +1,1 @@
+print('\n'.join(str((i**4-9*(i**2)+24*i-16)//2) for i in range(1, int(input())+1)))
